@@ -14,6 +14,8 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var user_component_1 = require('./user/user.component');
+var about_component_1 = require('./about/about.component');
+var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,11 +24,13 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                http_1.HttpModule
+                http_1.HttpModule,
+                app_routing_1.routing
             ],
             declarations: [
                 app_component_1.AppComponent,
-                user_component_1.UserComponent
+                user_component_1.UserComponent,
+                about_component_1.AboutComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
