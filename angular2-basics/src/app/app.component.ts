@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent  {
   name = 'Teejay';
-  email = 'teejay@teejaymew.com',
+  email = 'teejay@teejaymew.com';
   address = {
     street: 'Guijo Street',
     city: 'Pasig City',
     state: 'Metro Manila'
-  }
+  };
 }
