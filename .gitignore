@@ -14,3 +14,4 @@ _temp
 .vscode
 *.component.js.map
 *.component.js
+*.service.js

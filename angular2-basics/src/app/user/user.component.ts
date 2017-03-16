@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PostsService } from '../services/posts.service';
 
 @Component({
   selector: 'user',
@@ -9,11 +10,11 @@ import { Component } from '@angular/core';
       <button (click)="toggleHobbies()">{{showHobbies ? "Hide Hobbies" : "Show Hobbies"}}</button>
       <div *ngIf="showHobbies">
       <h3>Hobbies</h3>
-      <ul>
-        <li *ngFor="let hobby of hobbies; let i = index">
-          {{hobby}} <button (click)="deleteHobby(i)">x</button>
-        </li>
-      </ul>
+        <ul>
+          <li *ngFor="let hobby of hobbies; let i = index">
+            {{hobby}} <button (click)="deleteHobby(i)">x</button>
+          </li>
+        </ul>
       </div>
       <form (submit)="addHobby(hobby.value)">
         <label>Add Hobby: </label><br />
@@ -33,27 +34,39 @@ import { Component } from '@angular/core';
         <label>State: </label><br />
         <input type="text" name="state" [(ngModel)]="address.state" /><br />
       </form>
-      `
+      <hr />
+      <h3>Posts</h3>
+      <div *ngFor="let post of posts">
+        <h3>{{post.title}}</h3>
+        <p>{{post.body}}</p>
+      </div>
+      `,
+      providers: [PostsService]
 })
-export class UserComponent  {
+export class UserComponent {
 
-  name : string;
-  email : string;
-  address : address;
+  name: string;
+  email: string;
+  address: address;
   hobbies: string[];
   showHobbies: boolean;
+  posts: Post[];
 
-  constructor() {
+  constructor(private postsService: PostsService) {
     console.log("constructor ran");
     this.name = 'Teejay';
     this.email = 'teejay@teejaymew.com',
-    this.address = {
-      street: 'Guijo Street',
-      city: 'Pasig City',
-      state: 'Metro Manila'
-    }
+      this.address = {
+        street: 'Guijo Street',
+        city: 'Pasig City',
+        state: 'Metro Manila'
+      }
     this.hobbies = ['Music', 'Movies', 'Games'];
     this.showHobbies = false;
+    this.postsService.getPosts().subscribe(posts => {
+      this.posts = posts;
+    });
+
   }
 
   toggleHobbies(): void {
@@ -77,4 +90,10 @@ interface address {
   street: string;
   city: string;
   state: string;
+}
+
+interface Post {
+  id: number;
+  title: string;
+  body: string;
 }
