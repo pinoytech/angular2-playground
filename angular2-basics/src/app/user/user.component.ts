@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
       <h1>Hello {{name}}</h1>
       <p><strong>Email: {{email}}</strong></p>
       <p><strong>Address: </strong>{{address.street}} {{address.city}} {{address.state}}</p>
+      <h3>Hobbies</h3>
+      <ul>
+        <li *ngFor="let hobby of hobbies">{{hobby}}</li>
+      </ul>
       `
 })
 export class UserComponent  {
@@ -13,6 +17,7 @@ export class UserComponent  {
   name : string;
   email : string;
   address : address;
+  hobbies: string[];
 
   constructor() {
     console.log("constructor ran");
@@ -23,6 +28,7 @@ export class UserComponent  {
       city: 'Pasig City',
       state: 'Metro Manila'
     }
+    this.hobbies = ['Music', 'Movies', 'Games'];
   }
 }
 
