@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit {
   showImage: boolean = false;
   listFilter: string;
   products: IProduct[];
+  errorMessage: string;
   // private _productService;
   // constructor(productService: ProductService) {
   //   _productService = productService;
@@ -26,7 +27,11 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("On Init");
-    this.products = this._productService.getProducts();
+    this._productService.getProducts()
+      .subscribe(
+      products => { this.products = products },
+      error => {this.errorMessage = <any>error}
+      );
   }
   toggleImage(): void {
     this.showImage = !this.showImage;
