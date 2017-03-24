@@ -16,3 +16,15 @@ _temp
 *.component.js
 *.service.js
 *.module.js
+
+typings
+**/app/**/*.js
+**/app/**/*.map
+bower_components
+
+.vs
+**/*.sou
+**/*.user
+bin
+obj
+packages
